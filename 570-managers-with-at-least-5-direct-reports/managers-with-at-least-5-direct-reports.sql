@@ -1,1 +1,1 @@
-select name from employee A join (select managerId, count(*) as empcount from employee where managerId is not null group by managerId having count(*) >= 5) B where A.id=B.managerId
+select name from employee A join (select managerId, count(*) as empcount from employee  group by managerId having count(*) >= 5) B where A.id=B.managerId

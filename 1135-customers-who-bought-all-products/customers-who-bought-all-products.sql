@@ -37,13 +37,11 @@ having count(distinct product_key) = (select count(*) from Product)
 
 */
 
-WITH buy_count AS (
-    SELECT c.customer_id, COUNT(DISTINCT c.product_key) AS pro_count
-    FROM customer c GROUP BY (c.customer_id)
-)
 
-SELECT bc.customer_id FROM buy_count bc 
-WHERE bc.pro_count=(SELECT COUNT(*) FROM product)
+SELECT c.customer_id 
+FROM customer c GROUP BY (c.customer_id)
+HAVING COUNT(DISTINCT c.product_key)=(SELECT COUNT(*) FROM product)
+
 
 
 
